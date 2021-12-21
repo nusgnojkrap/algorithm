@@ -18,6 +18,7 @@ function nearSmallerElement(arr) {
                     near.pop();
                 }
             }
+
             near.push(arr[i]);
         } else {
             //near < arr
