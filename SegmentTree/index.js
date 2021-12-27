@@ -7,6 +7,7 @@ a = [5, 8, 6, 3, 2, 7, 2, 6];
 function SegmentTree(arr) {
     if (Math.log2(arr.length) % 1 != 0) {
         console.log("error input arr length : " + arr.length);
+        return 0;
     }
     let segment = [];
     segment[0] = arr;
@@ -19,9 +20,6 @@ function SegmentTree(arr) {
             j = j + 2;
         }
         k = k / 2;
-
-        // console.log("---------------");
-        // console.log("segment[" + i + "] : " + segment[i]);
     }
     let result = [];
     let x = 1;
@@ -34,12 +32,12 @@ function SegmentTree(arr) {
     return result;
 }
 
-// // input  : arr, a, b
-// // output : sum
-// function sumSegmentTree(arr, a, b) {
-//     let arrlength = arr.length;
-//     let sumarr = segmentTree(arr);
+// input  : arr, a, b
+// output : sum
+function sumSegmentTree(arr, p, q) {
+    let sumarr = SegmentTree(arr);
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {}
+}
 
-// }
-
-console.log(SegmentTree(a));
+sumSegmentTree(a, 1, 6);
