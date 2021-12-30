@@ -10,6 +10,6 @@
 
 <br>
 
-<p align="center">![alt](./img/result.png)</p>
+<p align="center"><img src="./img/result.png" alt="error"></p>
 
 <br>
