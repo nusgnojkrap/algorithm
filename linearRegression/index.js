@@ -26,28 +26,26 @@ let data = [
 ];
 
 function linearFunction(data) {
-    let x = [];
-    let y = [];
-    console.log("data.length : " + data.length);
+    let p = 0;
+    let pp = 0;
+    let pq = 0;
+    let q = 0;
     for (let i = 0; i < data.length; i++) {
-        x[i] = 0;
-        y[i] = 0;
-        for (let j = 0; j < data.length; j++) {
-            if (i != j) {
-                x[i] = x[i] + data[i][0];
-                y[i] = y[i] + data[i][1];
-            }
-        }
-        x[i] = x[i] / (data.length - 1);
-        y[i] = y[i] / (data.length - 1);
+        p = p + data[i][0];
+        pp = pp + data[i][0] * data[i][0];
+        pq = pq + data[i][0] * data[i][1];
+        q = q + data[i][1];
     }
+    console.log("p : " + p);
+    console.log("pp : " + pp);
+    console.log("pq : " + pq);
+    console.log("q : " + q);
 
-    for (let i = 0; i < data.length; i++) {
-        console.log("x[" + i + "] : " + x[i]);
-        console.log("y[" + i + "] : " + y[i]);
-    }
-    // console.log(p);
-
-    //data.length; //b^2
+    let b = (pq * p - q * pp) / (p * p - data.length * pp);
+    let a = (data.length * pq - p * q) / (data.length * pp - p * p);
+    console.log("a : " + a);
+    console.log("b : " + b);
+    console.log("f(x) = " + a + "x + " + b);
 }
+
 linearFunction(data);
