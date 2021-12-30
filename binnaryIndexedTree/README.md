@@ -27,3 +27,13 @@
 
 <ol><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi><mo stretchy="false">[</mo><msup><mn>2</mn><mrow class="MJX-TeXAtom-ORD"><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>&#x22C5;<!-- ⋅ --></mo><mi>i</mi><mo>+</mo><msup><mn>2</mn><mi>k</mi></msup><mo stretchy="false">]</mo><mo>=</mo><msubsup><mi mathvariant="normal">&#x03A3;<!-- Σ --></mi><mrow lass="MJX-TeXAtom-ORD"><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow class="MJX-TeXAtom-ORD"><msup><mn>2</mn><mi>k</mi></msup></mrow></msubsup><mrow class="MJX-TeXAtom-ORD"><mi>a</mi><mi>r</mi><mi>r</mi><mo stretchy="false">[</mo><msup><mn>2</mn><mrow class="MJX-TeXAtom-ORD"><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>&#x22C5;<!-- ⋅ --></mo><mi>i</mi><mo>+</mo><mi>j</mi><mo stretchy="false">]</mo></mrow></math></li><li>data[12] = arr[9] + arr[10] + arr[11] + arr[12], …</li></ol>
 <br>
+
+<br>
+
+### Reference
+
+<br>
+
+> https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/09/algorithm-fenwick-tree/
+
+<br>
