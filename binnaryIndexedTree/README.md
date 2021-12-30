@@ -60,21 +60,7 @@
 <mn>2</mn>
 <mi>k</mi>
 </msup>
-</math>의 배수이면서 <math xmlns="http://www.w3.org/1998/Math/MathML">
-<msup>
-<mn>2</mn>
-<mrow class="MJX-TeXAtom-ORD">
-<mi>k</mi>
-<mo>+</mo>
-<mn>1</mn>
-</mrow>
-</msup>
-</math>의 배수가 아닌 원소는 직전 arr의 <math xmlns="http://www.w3.org/1998/Math/MathML">
-<msup>
-<mn>2</mn>
-<mi>k</mi>
-</msup>
-</math>개의 값의 합을 보존한다
+</math>의 배수이면서 <math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mrow class="MJX-TeXAtom-ORD"><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msup></math>의 배수가 아닌 원소는 직전 arr의 <math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mi>k</mi></msup></math>개의 값의 합을 보존한다
 
 <ol><li><math xmlns="http://www.w3.org/1998/Math/MathML">
   <mi>d</mi>
