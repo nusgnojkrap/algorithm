@@ -36,16 +36,13 @@ function linearFunction(data) {
         pq = pq + data[i][0] * data[i][1];
         q = q + data[i][1];
     }
-    console.log("p : " + p);
-    console.log("pp : " + pp);
-    console.log("pq : " + pq);
-    console.log("q : " + q);
 
     let b = (pq * p - q * pp) / (p * p - data.length * pp);
     let a = (data.length * pq - p * q) / (data.length * pp - p * p);
     console.log("a : " + a);
     console.log("b : " + b);
     console.log("f(x) = " + a + "x + " + b);
+    return a, b;
 }
 
 linearFunction(data);
