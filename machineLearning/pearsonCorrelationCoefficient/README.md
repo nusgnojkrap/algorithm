@@ -1,8 +1,4 @@
-# Guide to Competitive Programming: Learning and Improving Algorithms Through Contests
-
-<br>
-
-### Pearson Correlation Coefficient
+# Pearson Correlation Coefficient
 
 <br>
 
