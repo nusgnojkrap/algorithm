@@ -20,9 +20,33 @@ async function edgeDetected() {
         for (let j = 0; j < 512; j++) {
             resultdata[i][j] = [];
             for (let k = 0; k < 4; k++) {
-                resultdata[i][j].push(data[count++]);
+                if (k != 3) {
+                    resultdata[i][j].push(data[count++]);
+                } else {
+                    count++;
+                }
             }
         }
     }
+
+    for (let i = 0; i < 512; i++) {
+        for (let j = 0; j < 512; j++) {
+            pointDistance();
+        }
+    }
+
     console.log(resultdata);
 }
+
+function pointDistance(a, b) {
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    x = (a[0] - b[0]) * (a[0] - b[0]);
+    y = (a[1] - b[1]) * (a[1] - b[1]);
+    z = (a[2] - b[2]) * (a[2] - b[2]);
+    let result;
+    result = Math.sqrt(x + y + z);
+    return result;
+}
+edgeDetected();
