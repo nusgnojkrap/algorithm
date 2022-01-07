@@ -3,6 +3,8 @@
 
 var pixels = require("image-pixels");
 var fs = require("fs");
+const Jimp = require("jimp");
+
 async function edgeDetected() {
     // load single source
     var { data, width, height } = await pixels("./image/Lenna.png");
@@ -28,6 +30,7 @@ async function edgeDetected() {
             }
         }
     }
+    //resultdata : 1차원 데이터를 3차원 데이터로 width * height * 4(R, G, B, A)
     let edgeData = [];
     for (let i = 0; i < 511; i++) {
         edgeData[i] = [];
@@ -36,27 +39,24 @@ async function edgeDetected() {
             edgeData[i][j] = pointDistance(resultdata[i][j], resultdata[i][j + 1]);
         }
     }
-    // console.log(edgeData);
-    edgeData = edgeDetectedArray(edgeData);
+    //edgeData : 자기 자신과 바로 오른쪽 점과의 공간좌표 RGB 에서의 거리
+    edgeData = edgeDetectedArray(edgeData, 20);
 
     // console.log(edgeData);
 
-    let aaa = [];
-    count = 0;
-    for (let i = 0; i < 511; i++) {
-        for (let j = 0; j < 511; j++) {
-            for (let k = 0; k < 3; k++) {
-                if (edgeData[i][j] == 1) {
-                    aaa.push(0); //검정색
-                } else {
-                    aaa.push(255); //흰색
-                }
-            }
-            // aaa.push(edgeData[i][j]);
-        }
-    }
-    saveImage("result.pcx", aaa);
-    // console.log(resultdata);
+    let image = new Jimp(512, 512, function (err, image) {
+        if (err) throw err;
+
+        edgeData.forEach((row, y) => {
+            row.forEach((color, x) => {
+                image.setPixelColor(color, x, y);
+            });
+        });
+
+        image.write("./image/test.png", (err) => {
+            if (err) throw err;
+        });
+    });
 }
 
 function pointDistance(a, b) {
@@ -69,34 +69,20 @@ function pointDistance(a, b) {
     return result;
 }
 
-function edgeDetectedArray(a) {
+function edgeDetectedArray(a, Benchmark) {
+    //2
     for (let i = 0; i < a.length; i++) {
         for (let j = 0; j < a[0].length; j++) {
-            if (a[i][j] >= 10) {
-                a[i][j] = 1;
+            if (a[i][j] >= Benchmark) {
+                //edge 라고 판단하면 빨간색
+                a[i][j] = 0xff0000ff;
             } else {
-                a[i][j] = 0;
+                //edge 가 아니면 파란색
+                a[i][j] = 0x0000ffff;
             }
         }
     }
     return a;
 }
-
-function saveImage(filename, data) {
-    //var myBuffer = new Buffer(data.length);
-    var myBuffer = new Buffer.alloc(data.length);
-    for (var i = 0; i < data.length; i++) {
-        myBuffer[i] = data[i];
-    }
-    fs.writeFile("./image/" + filename, myBuffer, function (err) {
-        //fs.writeFile(ARTWORK_PATH + filename, myBuffer, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("The file was saved!");
-        }
-    });
-}
-// saveImage("image.jpg", [0, 43, 255, etc]);
 
 edgeDetected();

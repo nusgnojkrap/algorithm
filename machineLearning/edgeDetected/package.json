@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "fs": "0.0.1-security",
-    "image-pixels": "^2.2.2"
+    "image-pixels": "^2.2.2",
+    "jimp": "^0.16.1"
   }
 }
