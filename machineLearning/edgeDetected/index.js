@@ -9,12 +9,6 @@ async function edgeDetected() {
     // load single source
     var { data, width, height } = await pixels("./image/Lenna.png");
 
-    // load multiple sources in parallel
-    // var [a, b, c] = await pixels.all(["./image/Lenna.png", { source: "./b.png", cache: false }]);
-    // console.log(data);
-    // console.log(width);
-    // console.log(height);
-
     let resultdata = [];
     let count = 0;
     for (let i = 0; i < 512; i++) {

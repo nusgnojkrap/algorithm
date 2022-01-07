@@ -16,10 +16,17 @@
 
 > [그림 2]
 
-> RGB 변화량 = 공간좌표 RGB 에서 두 점의 거리<br><br>
-> input : [그림 1]
-> output : [그림 2]<br>
-> Edge 판단 기준 = 공간좌표 RGB 에서의 두 점의 거리 20 이상을 edge로 판단한 결과 [그림 2]<br><br> > <br> > <br>
+<p><img src="./image/rgb.png" alt="error"></p>
+
+> [그림 3]
+
+<br><br>
+
+> RGB 변화량 = 공간좌표 RGB 에서 두 점의 거리<br>
+
+> [그림 3] 참고<br><br>
+
+> Edge 판단 기준 = 공간좌표 RGB 에서의 두 점의 거리 20 이상을 edge로 판단한 결과 [그림 2]<br><br>
 
 > 2차원 이미지에서 각각의 픽셀의 색 데이터(R, G, B) , 투명도는 무시한다<br><br>
 > 3차원 공간에서 각각의 축을 R, G, B 라고 생각<br><br>
@@ -38,6 +45,8 @@
 
 <br>
 
-> https://en.wikipedia.org/wiki/Edge_detection
+> https://en.wikipedia.org/wiki/Edge_detection<br>
+
+> http://www.scubamedia.co.kr/news_proc/news_contents.jsp?ncd=136
 
 <br>
