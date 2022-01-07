@@ -6,11 +6,11 @@
 
 <br>
 
-<p align="center"><img src="./image/Lenna.png" alt="error"></p>
+<p><img src="./image/Lenna.png" alt="error"></p>
 
 > [그림 1]
 
-<p align="center"><img src="./image/result.png" alt="error"></p>
+<p><img src="./image/result.png" alt="error"></p>
 
 > [그림 2]
 
