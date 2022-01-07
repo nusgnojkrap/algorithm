@@ -7,7 +7,7 @@
 <br>
 
 <p align="center"><img src="./image/Lenna.png" alt="error"></p>
-<p align="center"><img src="./image/test.png" alt="error"></p>
+<p align="center"><img src="./image/result.png" alt="error"></p>
 <br>
 <br>
 
