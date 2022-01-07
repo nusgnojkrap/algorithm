@@ -16,6 +16,8 @@
 
 > [그림 2]
 
+<br><br>
+
 <p><img src="./image/rgb.png" alt="error"></p>
 
 > [그림 3]
