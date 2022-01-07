@@ -6,6 +6,11 @@
 
 <br>
 
+<p align="center"><img src="./image/Lenna.png" alt="error"></p>
+<p align="center"><img src="./image/test.png" alt="error"></p>
+<br>
+<br>
+
 > 2차원 이미지에서 각각의 픽셀의 색 데이터(R, G, B) , 투명도는 무시한다
 > 3차원 공간에서 각각의 축을 R, G, B 라고 생각
 > 각각의 축은 255가 최대
