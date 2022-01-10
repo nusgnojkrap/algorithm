@@ -5,7 +5,7 @@ var pixels = require("image-pixels");
 var fs = require("fs");
 const Jimp = require("jimp");
 
-async function edgeDetected() {
+async function edgeDetected(point2pointDistance, edgedetectDistance) {
     // load single source
     var { data, width, height } = await pixels("./image/Lenna.png");
 
@@ -25,35 +25,34 @@ async function edgeDetected() {
         }
     }
     //resultdata : 1차원 데이터를 3차원 데이터로 width * height * 4(R, G, B, A)
-    let edgeData = [];
-    for (let i = 0; i < 511; i++) {
-        edgeData[i] = [];
-        for (let j = 0; j < 511; j++) {
+    let edgeData_horizontal = [];
+    for (let i = 0; i < resultdata.length - point2pointDistance; i++) {
+        //width version
+        edgeData_horizontal[i] = [];
+        for (let j = 0; j < resultdata.length - point2pointDistance; j++) {
             //data[i][j] = r g b a
-            edgeData[i][j] = pointDistance(resultdata[i][j], resultdata[i][j + 1]);
+            edgeData_horizontal[i][j] = colorPointDistance(resultdata[i][j], resultdata[i][j + point2pointDistance]);
         }
     }
-    //edgeData : 자기 자신과 바로 오른쪽 점과의 공간좌표 RGB 에서의 거리
-    edgeData = edgeDetectedArray(edgeData, 20);
-
-    // console.log(edgeData);
+    //edgeData_horizontal : 자기 자신과 바로 오른쪽 점과의 공간좌표 RGB 에서의 거리
+    edgeData_horizontal = edgeDetectedArray(edgeData_horizontal, edgedetectDistance);
 
     let image = new Jimp(512, 512, function (err, image) {
         if (err) throw err;
 
-        edgeData.forEach((row, y) => {
+        edgeData_horizontal.forEach((row, y) => {
             row.forEach((color, x) => {
                 image.setPixelColor(color, x, y);
             });
         });
 
-        image.write("./image/test.png", (err) => {
+        image.write("./image/result_horizontal.png", (err) => {
             if (err) throw err;
         });
     });
 }
-
-function pointDistance(a, b) {
+//horizontal
+function colorPointDistance(a, b) {
     let x = (a[0] - b[0]) * (a[0] - b[0]);
     let y = (a[1] - b[1]) * (a[1] - b[1]);
     let z = (a[2] - b[2]) * (a[2] - b[2]);
@@ -79,4 +78,4 @@ function edgeDetectedArray(a, Benchmark) {
     return a;
 }
 
-edgeDetected();
+edgeDetected(3, 30);

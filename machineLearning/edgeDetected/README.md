@@ -42,6 +42,14 @@
 > edge 로 판단하는 기준을 잡는 방법은 생각중...(input 값으로 지정할 수 있도록) 크면 클 수록 edge 로 판단하지 않는다.<br><br>
 
 <br>
+<br><br>
+
+> diagonalEdgeDetected : 대각선 기준
+> horizontalEdgeDetected : 수평 기준
+> verticalEdgeDetected : 수직 기준
+> edgeDetected input 값 : edgeDetected(point2pointDistance, edgedetectDistance)
+> point2pointDistance : 각각의 픽셀을 검사할 때 해당 픽셀과 RGB 값의 차이를 검사할 픽셀의 위치
+> edgedetectDistance : edge로 판단할 RGB 거리의 최소값 ( edge 기준 )
 
 ### Reference
 
