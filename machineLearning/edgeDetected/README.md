@@ -12,23 +12,36 @@
 
 <br><br>
 
-<p><img src="./image/result.png" alt="error"></p>
+<p><img src="./image/resultresult_horizontal.png" alt="error"></p>
 
 > [그림 2]
+> 수평기준으로 edge 검출
+
+<br><br>
+
+<p><img src="./image/result_vertical.png" alt="error"></p>
+
+> [그림 3]
+> 수직기준으로 edge 검출
+
+<br><br>
+
+<p><img src="./image/result_diagonal.png" alt="error"></p>
+
+> [그림 4]
+> 대각선기준으로 edge 검출
 
 <br><br>
 
 <p><img src="./image/rgb.png" alt="error"></p>
 
-> [그림 3]
+> [그림 5]
 
 <br><br>
 
 > RGB 변화량 = 공간좌표 RGB 에서 두 점의 거리<br>
 
-> [그림 3] 참고<br><br>
-
-> Edge 판단 기준 = 공간좌표 RGB 에서의 두 점의 거리 20 이상을 edge로 판단한 결과 [그림 2]<br><br>
+> [그림 5] 참고<br><br>
 
 > 2차원 이미지에서 각각의 픽셀의 색 데이터(R, G, B) , 투명도는 무시한다<br><br>
 > 3차원 공간에서 각각의 축을 R, G, B 라고 생각<br><br>
