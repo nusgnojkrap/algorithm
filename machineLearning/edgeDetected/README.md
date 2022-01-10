@@ -12,7 +12,7 @@
 
 <br><br>
 
-<p><img src="./image/resultresult_horizontal.png" alt="error"></p>
+<p><img src="./image/result_horizontal.png" alt="error"></p>
 
 > [그림 2]
 > 수평기준으로 edge 검출
