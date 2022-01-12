@@ -32,12 +32,12 @@ async function DFT() {
     }
 
     console.log("count : " + count);
-    let ppp = mathjs.e ** (-2 * mathjs.pi * mathjs.sqrt(-1));
+    let pp = mathjs.e ** (-2 * mathjs.pi * mathjs.sqrt(-1));
     console.log(mathjs.e);
     console.log(mathjs.pi);
     console.log(mathjs.sqrt(-1));
     console.log(mathjs.pi * mathjs.sqrt(-1));
-    console.log(ppp);
+    console.log(pp);
 
     // count = 8192; // test 8192 = 2^13
     // let f = [];
