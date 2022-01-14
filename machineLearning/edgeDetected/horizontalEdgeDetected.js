@@ -35,8 +35,10 @@ async function edgeDetected(point2pointDistance, edgedetectDistance) {
         }
     }
     //edgeData_horizontal : 자기 자신과 바로 오른쪽 점과의 공간좌표 RGB 에서의 거리
-    edgeData_horizontal = edgeDetectedArray(edgeData_horizontal, edgedetectDistance);
+    //edgeData_horizontal = edgeDetectedArray(edgeData_horizontal, edgedetectDistance);
 
+    console.log(edgeDetectedArray(edgeData_horizontal, edgedetectDistance));
+    // console.log(edgeData_horizontal);
     let image = new Jimp(512, 512, function (err, image) {
         if (err) throw err;
 
@@ -68,10 +70,14 @@ function edgeDetectedArray(a, Benchmark) {
         for (let j = 0; j < a[0].length; j++) {
             if (a[i][j] >= Benchmark) {
                 //edge 라고 판단하면 빨간색
+                //a[i][j] = 0xff0000ff;
                 a[i][j] = 0xff0000ff;
             } else {
                 //edge 가 아니면 파란색
-                a[i][j] = 0x0000ffff;
+                //a[i][j] = 0x0000ffff;
+                //0x : 16진수라는 의미
+                //R, G, B, 투명도
+                a[i][j] = 0xffffffff;
             }
         }
     }
