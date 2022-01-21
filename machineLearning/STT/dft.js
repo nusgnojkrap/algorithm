@@ -1,5 +1,3 @@
-//  Cooley-Tukey algorithm
-
 let testaudio = "./audio/gooddaywav.wav";
 
 let math = require("mathjs");
