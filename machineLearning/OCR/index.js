@@ -17,7 +17,7 @@ const Jimp = require("jimp");
 
 async function edgeDetected() {
     // load single source
-    var { data, width, height } = await pixels("./image/OCRsample.png");
+    var { data, width, height } = await pixels("./image/2_1.png");
     console.log(data.length);
     console.log("width : " + width);
     console.log("height : " + height);
@@ -37,6 +37,8 @@ async function edgeDetected() {
         }
     }
 
+    console.log(resultdata); //test
+
     let grayArray = [];
     for (let i = 0; i < width; i++) {
         grayArray[i] = [];
@@ -45,55 +47,45 @@ async function edgeDetected() {
         }
     }
 
-    let image = new Jimp(width, height, function (err, image) {
-        if (err) throw err;
+    let chunk = `P3 \n${width} ${height} \n255\n`;
 
-        grayArray.forEach((row, y) => {
-            row.forEach((color, x) => {
-                image.setPixelColor(color, x, y);
-            });
-        });
+    for (let i = 0; i < width; i++) {
+        for (let j = 0; j < height; j++) {
+            chunk += `${resultdata[i][j][0]} ${resultdata[i][j][1]} ${resultdata[i][j][2]} \n`;
+        }
+    }
 
-        image.write("./image/sampleResult.png", (err) => {
-            if (err) throw err;
-        });
+    fs.writeFile("./image/2_1result.ppm", chunk, () => {
+        console.log("finish");
     });
-}
 
-function grayColor(r, g, b) {
-    //   1.1 color : 0xff0000ff
-    //   1.2 grey : newColor = 0.299×R + 0.587×G + 0.114×B
-    let newR = Math.round(0.299 * r);
-    let newG = Math.round(0.587 * g);
-    let newB = Math.round(0.114 * b);
+    // let image = new Jimp(width, height, function (err, image) {
+    //     if (err) throw err;
 
-    let hexR = newR.toString(16);
-    let hexG = newG.toString(16);
-    let hexB = newB.toString(16);
+    //     grayArray.forEach((row, y) => {
+    //         row.forEach((color, x) => {
+    //             image.setPixelColor(color, x, y);
+    //         });
+    //     });
 
-    if (hexR.length == 1) {
-        hexR = "0" + hexR;
-    }
-    if (hexG.length == 1) {
-        hexG = "0" + hexG;
-    }
-    if (hexB.length == 1) {
-        hexB = "0" + hexB;
-    }
-    let result = "";
-    result = result + hexR;
-    result = result + hexG;
-    result = result + hexB;
-    result = result + "ff";
-    result = parseInt(result, 16);
-    return result;
+    //     image.write("./image/sampleResult.png", (err) => {
+    //         if (err) throw err;
+    //     });
+    // });
 }
 
 function color2Gray(r, g, b) {
     //   1.2 grey : newColor = 0.299×R + 0.587×G + 0.114×B
     let resultColor = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
-    let resultData = resultColor + resultColor + resultColor + "ff";
+    //console.log("resultColor : " + resultColor);
+    let resultData = "";
+    resultColor = resultColor.toString(16);
+
+    resultData = resultColor + resultColor + resultColor + "ff";
+
+    // console.log("hex resultData : " + resultData);
     resultData = parseInt(resultData, 16);
     return resultData;
 }
+
 edgeDetected();
