@@ -25,11 +25,43 @@ async function DFT() {
         for (let n = 10000; n < 10500; n++) {
             resultData[k] = math.evaluate(`${resultData[k]} + ${channelData[k]} * e^((-2 * i * pi * ${k} * ${n}) / ${500})`);
         }
-        file.write(resultData[k] + "\n");
+
+        let [a, b] = complexSplit(resultData[k]);
+        file.write(a + "\t" + b + "\n");
     }
 
-    file.end();
+    // file.end(() => {
+    //     for (let i = 0; i < resultData.length; i++) {
+    //         let [a, b] = complexSplit(resultData[i]);
+    //         // console.log(a, b);
+    //     }
+    // });
 
     console.log("end");
 }
+
+function complexSplit(input) {
+    let real = input.re.toString();
+
+    if (real.includes("e")) {
+        real = Number(real.split("e")[0]) * 2.72 + Number(real.split("e")[1]);
+    } else {
+        real = Number(real);
+    }
+
+    let im = input.im.toString();
+
+    if (im.includes("e")) {
+        im = Number(im.split("e")[0]) * 2.72 + Number(im.split("e")[1]);
+    } else {
+        im = Number(im);
+    }
+
+    console.log(im);
+
+    return [real, im];
+
+    // console.log(input.re + " " + input.im);
+}
+
 DFT();
