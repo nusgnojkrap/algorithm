@@ -13,8 +13,6 @@
 > Speech to text is a speech recognition software that enables the recognition and translation of spoken language into text through computational linguistics
 
 <br>
-<br>
-<br>
 
 ### development process
 
@@ -31,7 +29,7 @@
 <br>
 <br>
 
-### Refernce
+#### Refernce
 
 > https://everyday-tech.tistory.com/entry/2%ED%83%84-%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%9D%8C%EC%84%B1-%EC%9D%B8%EC%8B%9D
 
