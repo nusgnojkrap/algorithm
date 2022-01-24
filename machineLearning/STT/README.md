@@ -16,8 +16,6 @@
 
 ### development process
 
-> <br><br>
-
 <ol><br>
 <li>data collection</li><br>
 <li>data preprocessing : FFT or DFT, STFT</li><br>
