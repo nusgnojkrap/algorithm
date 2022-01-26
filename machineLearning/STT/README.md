@@ -34,3 +34,5 @@
 > https://www.nti-audio.com/ko/%EC%A7%80-%EC%9B%90/know-how/%EB%B9%A0%EB%A5%B8-fourier-%EB%B3%80%ED%99%98-fft
 
 > https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=sooftware&logNo=221661644808
+
+> https://ratsgo.github.io/speechbook/docs/fe/mfcc
