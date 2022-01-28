@@ -15,19 +15,6 @@ const { type } = require("os");
 async function STT() {
     let channelData = await wavTobinary(testaudio);
     console.log("Sampling success");
-
-    console.log(channelData[28]);
-    console.log(channelData[36]);
-    console.log(channelData[40]);
-    console.log(channelData[43]);
-    console.log(channelData[52]);
-    console.log(channelData[56]);
-    console.log(channelData[59]);
-    console.log(channelData[67]);
-    console.log(channelData[71]);
-    console.log(channelData[74]);
-    console.log(channelData[84]);
-    console.log(channelData[88]);
     //step 1. Preemhasis
     let preemhasisData = [];
     for (let a = 0; a < channelData.length - 1; a++) {
@@ -51,6 +38,7 @@ async function STT() {
     w = math.evaluate(`e ^ (-2 * i * pi / ${channelData.length})`);
     //resultData[k] = math.evaluate(`${resultData[k]} + ${channelData[k]} * e^((-2 * i * pi * ${k} * ${n}) / ${500})`);
     // fftData = fft(channelData, w);
+    console.log("channelData.length : " + channelData.length);
     fftData = jongfft(channelData, w);
     console.log("Fourer Transform success");
     // for (let i = 0; i < fftData.length; i++) {

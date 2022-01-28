@@ -13,15 +13,22 @@ function jongfft(signal, w) {
     while (signal_arr.length > n) {
         n = n * 2;
     }
-    for (let i = 0; i < n - signal_arr.length; i++) {
+    console.log("n : " + n);
+    console.log("n - signal " + Number(n - signal_arr.length));
+    for (let i = 0; i < Number(n - signal_arr.length); i++) {
         signal_arr[signal_arr.length + i] = 0;
     }
+    console.log(signal_arr.length);
     return fft(signal_arr, w);
 }
 
 let count = 0;
 function fft(signal, w) {
     count++;
+    console.log("-----------------");
+    console.log("signal.length : " + signal.length); //65,536
+    console.log("w : " + w);
+    return;
     //0, 1, 2, 3
     if (typeof w.re != Number || typeof w.im != Number) {
         w.re = Number(w.re);
@@ -33,11 +40,22 @@ function fft(signal, w) {
     w.im = Number(w.im);
 
     let n = signal.length;
+    if (n == 4) {
+        console.log("signal0 : " + signal[0]);
+        console.log("signal1 : " + signal[1]);
+        console.log("signal2 : " + signal[2]);
+        console.log("signal3 : " + signal[3]);
+    }
+    if (n == 2) {
+        console.log("signal0 : " + signal[0]);
+        console.log("signal1 : " + signal[1]);
+    }
+    console.log("signal : " + signal[0]);
     if (n == 1) {
-        console.log("signal : " + signal[0]);
         if (signal[0] == undefined) {
             console.log("undefined : " + count);
         }
+        console.log("-----------------");
         return signal[0];
     }
     let even = [];
@@ -69,6 +87,7 @@ function fft(signal, w) {
     let fftData = [];
     let wp = 1;
     let j;
+
     try {
         for (j = 0; j < n / 2; j++) {
             //DFTn(A)[j] = DFTn/2(A0)[j] + w^j * DFTn/2(A1)[j]
@@ -78,8 +97,8 @@ function fft(signal, w) {
             //DFTn(A)[j + n/2] = DFTn/2(even)[j] - w^j * DFTn/2(odd[j])
             //math.evaluate(`e ^ (-2 * i * pi / ${channelData.length})`);
             try {
-                fftData[j] = math.evaluate(`${neweven[j]} + ${wp} * ${newodd[j]}`); //error
-                fftData[j + n / 2] = math.evaluate(`${neweven[j]} - ${wp} * ${newodd[j]}`); //error
+                fftData[j] = math.evaluate(`${neweven[j]} + ${wp} * ${newodd[j]}`);
+                fftData[Math.floor(j + n / 2)] = math.evaluate(`${neweven[j]} - ${wp} * ${newodd[j]}`); //error
                 // console.log("neweven[" + j + "] : " + neweven[j]);
             } catch (e) {
                 // console.log("error : " + e);
