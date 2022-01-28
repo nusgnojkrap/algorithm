@@ -4,15 +4,11 @@ let math = require("mathjs");
 
 function fft(signal, w) {
     let n = signal.length;
-    if (n == 1) {
+    if (n <= 1) {
         return;
     }
-    if (even == undefined) {
-        var even = [];
-    }
-    if (odd == undefined) {
-        var odd = [];
-    }
+    let even = [];
+    let odd = [];
     for (let k = 0; k < n; k++) {
         if (k % 2) {
             odd[(k - 1) / 2] = signal[k];
@@ -20,6 +16,7 @@ function fft(signal, w) {
             even[k / 2] = signal[k];
         }
     }
+
     fft(even, w * w);
     fft(odd, w * w);
 

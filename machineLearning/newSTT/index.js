@@ -9,11 +9,25 @@ let { preemphasis } = require("./utils/preemphasis");
 let { framing } = require("./utils/framing");
 let { windowing } = require("./utils/windowing");
 let { fft } = require("./utils/fft");
+const { jongfft } = require("./utils/jongfft");
+const { type } = require("os");
 
 async function STT() {
     let channelData = await wavTobinary(testaudio);
     console.log("Sampling success");
 
+    console.log(channelData[28]);
+    console.log(channelData[36]);
+    console.log(channelData[40]);
+    console.log(channelData[43]);
+    console.log(channelData[52]);
+    console.log(channelData[56]);
+    console.log(channelData[59]);
+    console.log(channelData[67]);
+    console.log(channelData[71]);
+    console.log(channelData[74]);
+    console.log(channelData[84]);
+    console.log(channelData[88]);
     //step 1. Preemhasis
     let preemhasisData = [];
     for (let a = 0; a < channelData.length - 1; a++) {
@@ -34,10 +48,22 @@ async function STT() {
     //step 4. Fourer Transform : fft
     let fftData = [];
     let w;
-    w = math.evaluate(`e ^ (-2 * i * pi)`);
+    w = math.evaluate(`e ^ (-2 * i * pi / ${channelData.length})`);
     //resultData[k] = math.evaluate(`${resultData[k]} + ${channelData[k]} * e^((-2 * i * pi * ${k} * ${n}) / ${500})`);
-    fftData = fft(channelData, w);
+    // fftData = fft(channelData, w);
+    fftData = jongfft(channelData, w);
     console.log("Fourer Transform success");
+    // for (let i = 0; i < fftData.length; i++) {
+    //     if (fftData[i] != 0 && fftData[i] != undefined && fftData[i] != NaN) {
+    //         console.log(fftData[i]);
+    //     }
+    // }
+
+    console.log("channelData : " + channelData[10500]);
+    console.log("fftData : " + fftData[10500]);
+
+    console.log("channel.length : " + channelData.length);
+    console.log("fftData.length : " + fftData.length);
 
     //step 5. Magnitude
 
