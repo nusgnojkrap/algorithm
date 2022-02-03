@@ -14,11 +14,20 @@ function jongfft(signal, w) {
         n = n * 2;
     }
     console.log("n : " + n);
-    console.log("n - signal " + Number(n - signal_arr.length));
-    for (let i = 0; i < Number(n - signal_arr.length); i++) {
-        signal_arr[signal_arr.length + i] = 0;
+    console.log("n( ) - signal(" + Number(n - signal_arr.length) + ") = " + Number(n - signal_arr.length));
+
+    // for (let i = 0; i < Number(n - signal_arr.length); i++) {
+    //     signal_arr[signal_arr.length + i] = 0;
+    // }
+
+    while (signal_arr.length != n) {
+        for (let i = 0; i < Number(n - signal_arr.length); i++) {
+            signal_arr[signal_arr.length + i] = 0;
+        }
     }
+
     console.log(signal_arr.length);
+    console.log("뭐야 슈ㅂ : " + Number(n - signal_arr.length));
     return fft(signal_arr, w);
 }
 
@@ -28,8 +37,9 @@ function fft(signal, w) {
     console.log("-----------------");
     console.log("signal.length : " + signal.length); //65,536
     console.log("w : " + w);
-    return;
-    //0, 1, 2, 3
+
+    //0
+
     if (typeof w.re != Number || typeof w.im != Number) {
         w.re = Number(w.re);
         w.im = Number(w.im);

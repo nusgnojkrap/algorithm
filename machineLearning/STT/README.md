@@ -12,7 +12,8 @@
 
 > Speech to text is a speech recognition software that enables the recognition and translation of spoken language into text through computational linguistics
 
-<br>
+> DFT algorithm
+> <br>
 
 ### development process
 
