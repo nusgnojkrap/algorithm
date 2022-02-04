@@ -47,12 +47,6 @@ async function STT() {
     //     }
     // }
 
-    console.log("channelData : " + channelData[10500]);
-    console.log("fftData : " + fftData[10500]);
-
-    console.log("channel.length : " + channelData.length);
-    console.log("fftData.length : " + fftData.length);
-
     //step 5. Magnitude
 
     //step 6. Power Spectrum
