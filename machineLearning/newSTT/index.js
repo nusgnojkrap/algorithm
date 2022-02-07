@@ -15,6 +15,13 @@ const { type } = require("os");
 async function STT() {
     let channelData = await wavTobinary(testaudio);
     console.log("Sampling success");
+
+    //step 0. get signal data
+    // let signalinput = fs.createWriteStream("./result/input.txt");
+    // for (let i = 0; i < channelData.length; i++) {
+    //     signalinput.write(channelData[i] + "\n");
+    // }
+
     //step 1. Preemhasis
     let preemhasisData = [];
     for (let a = 0; a < channelData.length - 1; a++) {
@@ -34,12 +41,17 @@ async function STT() {
 
     //step 4. Fourer Transform : fft
     let fftData = [];
-    let w;
-    w = math.evaluate(`e ^ (-2 * i * pi / ${channelData.length})`);
-    //resultData[k] = math.evaluate(`${resultData[k]} + ${channelData[k]} * e^((-2 * i * pi * ${k} * ${n}) / ${500})`);
-    // fftData = fft(channelData, w);
-    console.log("channelData.length : " + channelData.length);
+    let w = math.evaluate(`e ^ (-2 * i * pi / ${channelData.length})`);
+    console.log("index w : " + w);
+    console.log("start");
     fftData = jongfft(channelData, w);
+
+    let fftresult = fs.createWriteStream("./result/result.txt");
+    for (let i = 0; i < fftData.length; i++) {
+        fftresult.write(fftData[i] + "\n");
+    }
+
+    console.log("end");
     console.log("Fourer Transform success");
     // for (let i = 0; i < fftData.length; i++) {
     //     if (fftData[i] != 0 && fftData[i] != undefined && fftData[i] != NaN) {

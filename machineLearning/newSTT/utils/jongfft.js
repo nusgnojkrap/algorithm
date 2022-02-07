@@ -19,49 +19,27 @@ function jongfft(signal, w) {
         signal_arr[idx] == undefined ? (signal_arr[idx] = 0) : "";
         idx++;
     }
-
     return fft(signal_arr, w);
 }
 
-let count = 0;
 function fft(signal, w) {
-    // console.log("-----------------");
-    // console.log("signal.length : " + signal.length); //65,536
-    // console.log("w : " + w);
-
-    //0
-
     if (typeof w.re != Number || typeof w.im != Number) {
         w.re = Number(w.re);
         w.im = Number(w.im);
     }
+
     w.re = w.re.toFixed(10);
     w.im = w.im.toFixed(10);
     w.re = Number(w.re);
     w.im = Number(w.im);
 
-    let n = signal.length;
-    if (n == 65536) {
-        console.log("------------");
-        count++;
-        console.log(count);
-        let und = 0;
-        let num = 0;
-        for (let a = 0; a < n; a++) {
-            if (signal[a] == undefined) {
-                und++;
-            } else {
-                num++;
-            }
-        }
+    if (signal.length == 1) {
+        return signal;
     }
 
-    if (n == 1) {
-        return signal[0];
-    }
     let even = [];
     let odd = [];
-    for (let k = 0; k < n; k++) {
+    for (let k = 0; k < signal.length; k++) {
         if (k % 2) {
             //odd
             //1, 3
@@ -78,48 +56,29 @@ function fft(signal, w) {
     //error 부분
     let neweven = [];
     let newodd = [];
-    neweven = fft(even, math.evaluate(`${w} * ${w}`));
-    newodd = fft(odd, math.evaluate(`${w} * ${w}`));
-    console.log("neweven.length : " + neweven.length);
 
-    //error 부분
-    //설명  : 해당 배열에 fft result 가 안들어감
+    neweven = fft(even, math.multiply(w, w)); //even 에 값이 안들어감
+    newodd = fft(odd, math.multiply(w, w)); //odd 에 는 값이 들어감
 
     let fftData = [];
     let wp = 1;
     let j;
 
-    try {
-        for (j = 0; j < n / 2; j++) {
-            try {
-                fftData[j] = math.evaluate(`${neweven[j]} + ${wp} * ${newodd[j]}`);
-                fftData[j + n / 2] = math.evaluate(`${neweven[j]} - ${wp} * ${newodd[j]}`); //error
-                // console.log("neweven[" + j + "] : " + neweven[j]);
-            } catch (e) {
-                // console.log("error : " + e);
-            }
-
-            wp = math.evaluate(`${wp} * ${w}`);
-        }
-    } catch (e) {
-        // console.log("count : " + count);
-        // console.log("error : " + e);
-        // console.log("j : " + j);
-        // console.log(neweven[j]); //error
-        // console.log(newodd[j]);
+    for (j = 0; j < signal.length; j++) {
+        fftData[j] = 0;
     }
 
-    // if (signal.length >= 60000) {
-    //     console.log("signal[10500] : " + signal[10500]);
-    //     console.log("even[10500] : " + neweven[10500]);
-    //     console.log("odd[10500] : " + odd[10500]);
-    //     console.log("fftData[10500] : " + fftData[10500]);
+    for (j = 0; j < signal.length / 2; j++) {
+        fftData[j] = math.evaluate(`${neweven[j]} + ${wp} * ${newodd[j]}`);
+        fftData[j + signal.length / 2] = math.evaluate(`${neweven[j]} - ${wp} * ${newodd[j]}`); //error
+        wp = math.multiply(wp, w);
+    }
+
+    // let kk = j;
+    // for (j; j < signal.length; j++) {
+    //     fftData[j] = math.evaluate(`${neweven[kk]} - ${wp} * ${newodd[kk]}`);
+    //     wp = math.evaluate(`${wp} * ${w}`);
     // }
-    if (signal.length == 65536) {
-        for (let ind = 0; ind < 65536; ind++) {
-            console.log(`${ind}    : ${fftData[ind]}`);
-        }
-    }
     return fftData;
 }
 
