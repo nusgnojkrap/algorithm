@@ -9,7 +9,11 @@ function framing(data, frame_size, frame_stride) {
     while (data.length > k) {
         resultData[i] = [];
         for (let j = 0; j < frame_size; j++) {
-            resultData[i].push(data[k + j]);
+            if (data[k + j] == undefined) {
+                resultData[i].push(0);
+            } else {
+                resultData[i].push(data[k + j]);
+            }
         }
         resultData.push(data[i]);
 

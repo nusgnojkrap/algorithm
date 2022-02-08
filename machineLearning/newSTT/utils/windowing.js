@@ -7,10 +7,12 @@ const { cos, pi } = require("mathjs");
 //  input :
 // output :
 // formular : w[n] = 0.54 - 0.46 * cos(2pi*n/(N-1))
-function windowing(frame_size) {
+function windowing(framedata) {
     let hammingwindow = [];
-    for (let i = 0; i < frame_size; i++) {
-        hammingwindow[i] = 0.54 - 0.46 * cos((2 * pi * i) / (frame_size - 1));
+    for (let n = 0; n < framedata.length; n++) {
+        // console.log(framedata);
+        //console.log(framedata[n] * (0.54 - 0.46 * cos((2 * pi * n) / (framedata.length - 1))));
+        hammingwindow[n] = framedata[n] * (0.54 - 0.46 * cos((2 * pi * n) / (framedata.length - 1)));
     }
     return hammingwindow;
 }

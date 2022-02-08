@@ -13,3 +13,7 @@ function mel2Fre(mel) {
 }
 
 function melScaleFilter(fre, mel) {}
+
+module.exports.fre2Mel = fre2Mel;
+module.exports.mel2Fre = mel2Fre;
+module.exports.melScaleFilter = melScaleFilter;

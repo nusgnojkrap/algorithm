@@ -6,6 +6,7 @@ let math = require("mathjs");
 
 function jongfft(signal, w) {
     //signal.length = 2^n
+
     let signal_arr = Object.entries(signal).map(([key, value]) => {
         return value;
     });
@@ -23,16 +24,6 @@ function jongfft(signal, w) {
 }
 
 function fft(signal, w) {
-    if (typeof w.re != Number || typeof w.im != Number) {
-        w.re = Number(w.re);
-        w.im = Number(w.im);
-    }
-
-    w.re = w.re.toFixed(10);
-    w.im = w.im.toFixed(10);
-    w.re = Number(w.re);
-    w.im = Number(w.im);
-
     if (signal.length == 1) {
         return signal;
     }
@@ -70,7 +61,7 @@ function fft(signal, w) {
 
     for (j = 0; j < signal.length / 2; j++) {
         fftData[j] = math.evaluate(`${neweven[j]} + ${wp} * ${newodd[j]}`);
-        fftData[j + signal.length / 2] = math.evaluate(`${neweven[j]} - ${wp} * ${newodd[j]}`); //error
+        fftData[j + signal.length / 2] = math.evaluate(`${neweven[j]} - ${wp} * ${newodd[j]}`);
         wp = math.multiply(wp, w);
     }
 
